@@ -1,1 +1,20 @@
-Device tree for BQ Aquaris X5
+Resurrection Remix device tree for BQ Aquaris X5
+===================
+
+Dependencies
+--------
+- Device_common: https://github.com/CyanogenMod/android_device_cyanogen_msm8916-common
+- Qcom: https://github.com/CyanogenMod/android_device_qcom_common/
+- Kernel: https://github.com/dimusa6/android_kernel_bq_paella
+- Vendor: https://github.com/Darkmet98/propietary_vendor_bq_paella
+
+Credits
+-----
+- CyanogenMod for the ROM sources.
+- Resurrection Remix for the ROM Modifications.
+- Dimusa6 for device, kernel and vendor files.
+
+How to build
+---
+https://github.com/ResurrectionRemix/platform_manifest
+
