@@ -24,7 +24,7 @@ BOARD_USES_QCOM_HARDWARE := true
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-TARGET_KERNEL_CONFIG := paella_defconfig
+TARGET_KERNEL_CONFIG := cyanogenmod_picmt_defconfig
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
 
@@ -91,9 +91,11 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 
-TARGET_KERNEL_SOURCE := kernel/bq/msm8916
+TARGET_KERNEL_SOURCE := kernel/bq/common
 
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+TARGET_USES_MEDIA_EXTENSIONS := true
 
 # inherit from the proprietary version
 -include vendor/bq/paella/BoardConfigVendor.mk
