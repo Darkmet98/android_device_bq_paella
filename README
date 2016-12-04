@@ -1,4 +1,4 @@
-Resurrection Remix device tree for BQ Aquaris X5
+SlimROM device tree for BQ Aquaris X5
 ===================
 
 Dependencies
@@ -11,10 +11,10 @@ Dependencies
 Credits
 -----
 - CyanogenMod for the ROM sources.
-- Resurrection Remix for the ROM Modifications.
+- SlimRom team for the ROM Modifications.
 - Dimusa6 for device, kernel and vendor files.
 
 How to build
 ---
-https://github.com/ResurrectionRemix/platform_manifest
+https://github.com/SlimRoms/platform_manifest/tree/ng7.1
 
