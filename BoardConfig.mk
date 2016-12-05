@@ -36,6 +36,8 @@ CONFIG_EAP_PROXY_DUAL_SIM := true
 
 # Camera
 -include $(DEVICE_PATH)/camera/CameraConfig.mk
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+BOARD_GLOBAL_CFLAGS += -DMETADATA_CAMERA_SOURCE
 
 #Audio
 BOARD_USES_GENERIC_AUDIO := true
@@ -91,7 +93,7 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 
-TARGET_KERNEL_SOURCE := kernel/bq/common
+TARGET_KERNEL_SOURCE := kernel/bq/paella
 
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
