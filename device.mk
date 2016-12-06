@@ -142,6 +142,7 @@ PRODUCT_PACKAGES += \
 #Apps
 PRODUCT_PACKAGES += \
 	Camera2
+	FMRadio
 
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
