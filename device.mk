@@ -141,7 +141,8 @@ PRODUCT_PACKAGES += \
 
 #Apps
 PRODUCT_PACKAGES += \
-	Camera2
+	Camera2 \
+	Gello
 
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
