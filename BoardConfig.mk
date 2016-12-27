@@ -15,7 +15,7 @@
 
 FORCE_32_BIT := true
 
--include device/cyanogen/msm8916-common/BoardConfigCommon.mk
+-include device/qcom/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/bq/paella
 TARGET_VENDOR := bq
@@ -24,7 +24,7 @@ BOARD_USES_QCOM_HARDWARE := true
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-TARGET_KERNEL_CONFIG := cyanogenmod_picmt_defconfig
+TARGET_KERNEL_CONFIG := paella_defconfig
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
 
@@ -44,6 +44,13 @@ BOARD_USES_GENERIC_AUDIO := true
 
 # CMHW
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw/src
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAS_QCA_BT_ROME := true
+QCOM_BT_USE_BTNV := true
+TARGET_QCOM_BLUETOOTH_VARIANT := caf-msm8916
 
 # DEXPREOPT
 WITH_DEXPREOPT := false
@@ -92,6 +99,7 @@ BOARD_SEPOLICY_DIRS += \
     device/bq/paella/sepolicy
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_SEPARATED_DT := false
 
 TARGET_KERNEL_SOURCE := kernel/bq/paella
 
@@ -99,5 +107,23 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 TARGET_USES_MEDIA_EXTENSIONS := true
 
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8916
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8916
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
 # inherit from the proprietary version
 -include vendor/bq/paella/BoardConfigVendor.mk
+
+# Kernel Toolchain
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
+# TWRP-Specific
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_THEME := portrait_hdpi
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_INCLUDE_CRYPTO := true
+TW_DEFAULT_BRIGHTNESS := 128

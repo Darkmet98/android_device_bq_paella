@@ -41,10 +41,6 @@ PRODUCT_PACKAGES += \
 	himax-touchscreen.kl \
 	msm8x16-skui-snd-card_Button_Jack.kl
 
-# Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
-
 $(call inherit-product, frameworks/native/build/phone-hdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
@@ -141,8 +137,7 @@ PRODUCT_PACKAGES += \
 
 #Apps
 PRODUCT_PACKAGES += \
-	Camera2 \
-	Gello
+	Camera2
 
 # Connectivity Engine support
 PRODUCT_PACKAGES += \
@@ -213,7 +208,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/spn-conf.xml:system/etc/spn-conf.xml
 
 # Inherit the rest from msm8916-common
-$(call inherit-product, device/cyanogen/msm8916-common/msm8916.mk)
+$(call inherit-product, device/qcom/msm8916-common/msm8916.mk)
 
 #BQ APPS
 $(call inherit-product-if-exists, vendor/bq/app/config/products.mk)
