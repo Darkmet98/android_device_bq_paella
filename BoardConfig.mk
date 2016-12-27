@@ -24,12 +24,6 @@ BOARD_USES_QCOM_HARDWARE := true
 
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
-TARGET_KERNEL_CONFIG := paella_defconfig
-TARGET_USES_UNCOMPRESSED_KERNEL := false
-KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
-
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
-
 # Support form WiFi security modes EAP-SIM, PEAP and AKA
 CONFIG_EAP_PROXY := qmi
 CONFIG_EAP_PROXY_DUAL_SIM := true
@@ -41,6 +35,7 @@ BOARD_GLOBAL_CFLAGS += -DMETADATA_CAMERA_SOURCE
 
 #Audio
 BOARD_USES_GENERIC_AUDIO := true
+TARGET_QCOM_AUDIO_VARIANT := caf-msm8916
 
 # CMHW
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/cmhw/src
@@ -51,6 +46,12 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_HAS_QCA_BT_ROME := true
 QCOM_BT_USE_BTNV := true
 TARGET_QCOM_BLUETOOTH_VARIANT := caf-msm8916
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
+
+# Media
+TARGET_USES_MEDIA_EXTENSIONS := true
+TARGET_QCOM_MEDIA_VARIANT := caf-msm8916
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # DEXPREOPT
 WITH_DEXPREOPT := false
@@ -98,25 +99,23 @@ TARGET_HW_DISK_ENCRYPTION := false
 BOARD_SEPOLICY_DIRS += \
     device/bq/paella/sepolicy
 
+#Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 BOARD_KERNEL_SEPARATED_DT := false
-
+TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_SOURCE := kernel/bq/paella
+TARGET_KERNEL_CONFIG := paella_defconfig
+TARGET_USES_UNCOMPRESSED_KERNEL := false
+KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
 
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-
-TARGET_USES_MEDIA_EXTENSIONS := true
-
-TARGET_QCOM_AUDIO_VARIANT := caf-msm8916
-TARGET_QCOM_MEDIA_VARIANT := caf-msm8916
-TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
-
-# inherit from the proprietary version
--include vendor/bq/paella/BoardConfigVendor.mk
 
 # Kernel Toolchain
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
+# inherit from the proprietary version
+-include vendor/bq/paella/BoardConfigVendor.mk
 
 # TWRP-Specific
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
