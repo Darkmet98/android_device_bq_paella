@@ -38,6 +38,9 @@ $(call inherit-product, vendor/omni/config/common.mk)
 # Must define platform variant before including any common things
 TARGET_BOARD_PLATFORM_VARIANT := msm8916
 
+# Inherit from paella device
+$(call inherit-product, device/bq/paella/device.mk)
+
 # Discard inherited values and use our own instead.
 PRODUCT_NAME := omni_paella
 PRODUCT_DEVICE := paella
@@ -53,5 +56,3 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME=paella \
     BUILD_FINGERPRINT=bq/Aquaris_X5/Aquaris_X5:7.1.1/NMF26Q/59e1a402e9:userdebug/test-keys \
     PRIVATE_BUILD_DESC="Paella-user 7.1.1 NMF26Q 25 dev-keys"
-
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST += ro.product.model

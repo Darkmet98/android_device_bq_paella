@@ -21,7 +21,6 @@ ro.sf.lcd_density=320
 media.stagefright.legacyencoder=true
 media.stagefright.less-secure=true
 
-
 # Enable OMA-CP
 persist.omacp.enable=true
 

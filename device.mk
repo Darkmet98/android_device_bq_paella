@@ -14,6 +14,7 @@
 # limitations under the License.
 #
 $(call inherit-product-if-exists, vendor/qcom/proprietary/common/config/device-vendor.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 #PRODUCT_DEFAULT_DEV_CERTIFICATE := build/target/product/security/releasekey
 
@@ -41,7 +42,7 @@ PRODUCT_PACKAGES += \
 	himax-touchscreen.kl \
 	msm8x16-skui-snd-card_Button_Jack.kl
 
-$(call inherit-product, frameworks/native/build/phone-hdpi-2048-dalvik-heap.mk)
+$(call inherit-product, device/bq/paella/patch/frameworks/native/build/phone-hdpi-2048-dalvik-heap.mk)
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
 
 # Audio configuration
@@ -77,8 +78,6 @@ PRODUCT_PACKAGES += \
     lights.msm8916
 
 # Media
-#
-
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 PRODUCT_COPY_FILES += \
@@ -112,6 +111,8 @@ PRODUCT_PACKAGES +=\
        pronto_wlan.ko \
        iwpriv \
        iwlist \
+	wpa_supplicant \
+	wpa_supplicant.conf \
        iwpriv.agent.sh
 
 

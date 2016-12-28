@@ -20,9 +20,10 @@ FORCE_32_BIT := true
 DEVICE_PATH := device/bq/paella
 TARGET_VENDOR := bq
 
-BOARD_USES_QCOM_HARDWARE := true
-
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
+
+# Platform
+BOARD_USES_QCOM_HARDWARE := true
 
 # Support form WiFi security modes EAP-SIM, PEAP and AKA
 CONFIG_EAP_PROXY := qmi
@@ -32,6 +33,9 @@ CONFIG_EAP_PROXY_DUAL_SIM := true
 -include $(DEVICE_PATH)/camera/CameraConfig.mk
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 BOARD_GLOBAL_CFLAGS += -DMETADATA_CAMERA_SOURCE
+
+# Display
+TARGET_QCOM_DISPLAY_VARIANT := caf-msm8916
 
 #Audio
 BOARD_USES_GENERIC_AUDIO := true
@@ -87,9 +91,6 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 13100366848
 # double tap to wake
 TARGET_TAP_TO_WAKE_NODE := "/sys/android_touch/SMWP"
 
-# Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
-
 # Video
 TARGET_HAVE_SIGNED_VENUS_FW := true
 
@@ -102,6 +103,8 @@ BOARD_SEPOLICY_DIRS += \
 #Kernel
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 BOARD_KERNEL_SEPARATED_DT := false
+TARGET_KERNEL_ARCH := arm
+TARGET_KERNEL_HEADER_ARCH := arm
 TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_SOURCE := kernel/bq/paella
 TARGET_KERNEL_CONFIG := paella_defconfig
@@ -117,12 +120,16 @@ KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 # inherit from the proprietary version
 -include vendor/bq/paella/BoardConfigVendor.mk
 
-# TWRP-Specific
+# Recovery
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_THEME := portrait_hdpi
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_INCLUDE_CRYPTO := true
 TW_DEFAULT_BRIGHTNESS := 128
+TW_THEME := portrait_hdpi
+TW_DEFAULT_LANGUAGE := es-ES
+TW_EXTRA_LANGUAGES := true
+TW_INCLUDE_CRYPTO := true
