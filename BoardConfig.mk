@@ -23,6 +23,8 @@ TARGET_VENDOR := bq
 TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
 
 # Platform
+TARGET_BOARD_PLATFORM := msm8916
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
 BOARD_USES_QCOM_HARDWARE := true
 
 # Support form WiFi security modes EAP-SIM, PEAP and AKA
@@ -97,25 +99,25 @@ TARGET_HAVE_SIGNED_VENUS_FW := true
 #Encrypt
 TARGET_HW_DISK_ENCRYPTION := false
 
+#Sepolicy
 BOARD_SEPOLICY_DIRS += \
     device/bq/paella/sepolicy
 
 #Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.selinux=permissive androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
 BOARD_KERNEL_SEPARATED_DT := false
 TARGET_KERNEL_ARCH := arm
-TARGET_KERNEL_HEADER_ARCH := arm
-TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_SOURCE := kernel/bq/paella
-TARGET_KERNEL_CONFIG := paella_defconfig
+TARGET_KERNEL_CONFIG := paellaAOSP_defconfig
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 KERNEL_DEFCONFIG := $(TARGET_KERNEL_CONFIG)
-
-TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Kernel Toolchain
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
+# Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # inherit from the proprietary version
 -include vendor/bq/paella/BoardConfigVendor.mk
@@ -126,10 +128,7 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_THEME := portrait_hdpi
-TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_DEFAULT_BRIGHTNESS := 128
 TW_THEME := portrait_hdpi
-TW_DEFAULT_LANGUAGE := es-ES
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_CRYPTO := true
